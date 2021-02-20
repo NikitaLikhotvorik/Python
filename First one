@@ -1,0 +1,13 @@
+x = 300
+y = 300
+def setup():
+    size(600,600)
+def draw():
+    background(255,204,0)
+    global x,y
+    x = x + 0.5
+    y = y - 0.5
+    circle (x,y,50)
+    circle (y,x,50)
+    circle (x,x,50)
+    circle (y,y,50)
