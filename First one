@@ -1,13 +1,15 @@
-x = 300
-y = 300
+x = 0
+y = 0
 def setup():
     size(600,600)
 def draw():
     background(255,204,0)
-    global x,y
+    translate(300,300)
+    global x
     x = x + 0.5
-    y = y - 0.5
-    circle (x,y,50)
-    circle (y,x,50)
+    circle (-x,x,50)
+    circle (x,-x,50)
     circle (x,x,50)
-    circle (y,y,50)
+    circle (-x,-x,50)
+    rotate(PI/3.0)
+    rect(x, x, 50,50)
