@@ -1,0 +1,9 @@
+lp = True
+def setup():
+    size(600,600)
+    background(0)
+def draw():
+    global lp
+    if mousePressed: 
+         circle(random(0,600),random(0,600),random(5,15))
+         fill(random(0,255),random(0,255),random(0,255))
