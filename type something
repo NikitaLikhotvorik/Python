@@ -1,0 +1,10 @@
+st = ' '
+def setup():
+    size(600,600)
+    textSize(50)
+def draw():
+    background(255,134,134)
+    text(st , 10,300)
+def keyTyped():
+    global st
+    st+=key
