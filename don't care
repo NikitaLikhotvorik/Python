@@ -1,18 +1,24 @@
 x = 0
+y = 0
+dx = 0
+dy = 0
 def setup():
     size(600,600)
 def draw():
     global y
     global x
+    x+=dx
+    y+=dy
     translate(300,300)
     background(0)
     circle(x,y,30)
-    if keyPressed:
-        if keyCode == UP:
-           y+=1
-        if keyCode == LEFT:
-           x-=1
-        if keyCode == RIGHT:
-           x+=1
-    else:
-        y-=1
+def keyPressed():
+    global dx,dy,y,x
+    if keyCode == UP:
+        dy = -1
+    if keyCode == LEFT:
+        dx = -1
+    if keyCode == RIGHT:
+        dx = 1
+    if keyCode == DOWN:
+        dy =1
