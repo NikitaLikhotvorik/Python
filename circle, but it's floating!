@@ -1,0 +1,19 @@
+x = 0
+lp = True
+def setup():
+    size(600,600)
+def draw():
+    global x
+    background(0)
+    translate(mouseX,mouseY)
+    rotate(radians(x))
+    x+=1
+    circle(100,0,50)
+def mouseClicked():
+    global lp
+    if lp:
+        lp = False
+        noLoop()
+    else:
+        lp = True
+        loop()
