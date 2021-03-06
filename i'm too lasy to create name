@@ -1,0 +1,9 @@
+x=0
+y=0
+def setup():
+    size(600,600)
+def draw():
+    translate(300,300)
+    background(10,10,10)
+    for i in range(300,0,-50):
+        circle(x,y,i)
