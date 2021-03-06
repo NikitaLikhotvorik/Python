@@ -1,0 +1,23 @@
+col=0
+row=8
+coll=10
+def setup():
+    size(coll*50,row*50)
+def draw():
+    global col
+    background(255)
+    for y in range(row):
+        if col == 0:
+                  fill(0)
+                  col=1
+        elif col ==1:
+                  fill(255)
+                  col=0
+        for x in range(coll):
+               if col == 0:
+                  fill(0)
+                  col=1
+               elif col ==1:
+                  fill(255)
+                  col=0
+               square(x*50,y*50,50)
