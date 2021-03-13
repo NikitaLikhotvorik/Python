@@ -1,0 +1,19 @@
+#      0,1,2
+y = [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+dy = [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+def setup():
+    size(600,600)
+    global y
+    for index in range(len(dy)):
+        dy[index] = random(2,6)
+
+def draw():
+    background(0,100,0)
+    global y
+    for x in range(len(y)):
+        y[x] += dy[x]
+        if y[x] > 400:
+            dy[x] = random(2,6)
+            y[x] = 0
+        circle(20+30*x, y[x], 30)
