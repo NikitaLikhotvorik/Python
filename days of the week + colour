@@ -1,0 +1,22 @@
+#      0,1,2
+lst = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
+activeIndex = 0
+def setup():
+    size(600,600)
+    textSize(50)
+
+def draw():
+    global x
+    background(0,100,0)
+    for index in range(len(lst)):
+        if index == activeIndex:
+            fill (255,0,0)
+        else:
+         fill (0,0,255)
+        text(lst[index],0,index*50 + 50)
+def mouseClicked():
+    global activeIndex
+    if mouseButton == LEFT and activeIndex !=6:
+        activeIndex = activeIndex + 1
+    elif mouseButton == RIGHT and activeIndex !=0:
+        activeIndex = activeIndex - 1
