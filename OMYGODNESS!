@@ -1,0 +1,22 @@
+
+let = []
+lst = []
+def setup():
+    size(600,600)
+    textSize(50)
+def draw():
+    fill("#9AF2CB")
+    rect(width/2,0,width/2, height)
+    fill(0)
+    for index in range (len(lst)):
+        text(lst[index],width/2,30 * index +30)
+    for index in range (len(let)):
+         text(let[index],index*20+20,30)
+def keyPressed():
+    global let,lst
+    if key == ENTER:
+        lst.append(''.join(let))
+        while (len(let) != 0):
+            del let[0]
+    elif len(let) <20:
+        let.append(key)
