@@ -1,0 +1,21 @@
+x = []
+y = []
+def setup():
+    size(600,600)
+def draw():
+    background(255)
+    rectMode(CENTER)
+    for index in range(len(x)):
+        push()
+        translate(x[index], y[index])
+        rotate(radians(10))
+        square(0,0,50)
+        scale(2,0)
+        pop()
+def mouseClicked():
+    global x,y
+    if mouseButton == LEFT:
+        x.append(mouseX) 
+        y.append(mouseY)
+    elif mouseButton == RIGHT:
+        del x[len(x)-1]
