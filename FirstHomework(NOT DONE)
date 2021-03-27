@@ -1,4 +1,5 @@
 
+
 let = []
 lst = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
 activeIndex = 0
@@ -7,7 +8,6 @@ def setup():
     textSize(50)
 
 def draw():
-    global x
     background(0,100,0)
     for index in range(len(lst)):
         if index == activeIndex:
@@ -17,12 +17,12 @@ def draw():
         text(lst[index],0,index*50 + 50)
 def keyPressed():
     global activeIndex
-    if key == 'w' and activeIndex !=6:
+    if key == 's' and activeIndex !=6:
         activeIndex = activeIndex + 1
-    elif key == 's' and activeIndex !=0:
+    elif key == 'w' and activeIndex !=0:
         activeIndex = activeIndex - 1
     elif key == ENTER:
         for index in range(len(lst)):
-            if index ==! activeIndex:
+            if index == activeIndex:
+                del lst[index]
                 fill(0)
-                text('DELETED',0,index*50 + 50)
