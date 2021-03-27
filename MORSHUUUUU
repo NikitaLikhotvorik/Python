@@ -1,0 +1,30 @@
+lst = []
+txt = ['Morshus slideshow', 'Lamp oil?', 'Rope?', 'Bombs?','You',  'Want it?']
+activeIndex = 0
+def setup():
+    textSize(25)
+    global img1,img2,img
+    size(600,600)
+    img = loadImage('Backgrownd1.png')
+    lst.append( loadImage('Morshu1.png'))
+    lst.append(loadImage('Morshu2.png'))
+    lst.append(loadImage('Morshu3.png'))
+    lst.append(loadImage('Morshu4.png'))
+    lst.append(loadImage('Morshu5.png'))
+    lst.append(loadImage('Morshu6.png'))
+    lst.append(loadImage('Morshu7.png'))
+    lst.append(loadImage('Morshu8.png'))
+    lst.append(loadImage('Morshu9.png'))
+    lst.append(loadImage('Morshu10.png'))
+    lst.append(loadImage('Morshu11.png'))
+    lst.append(loadImage('Morshu12.png'))
+def draw():
+    image(img,0,0,600,600)
+    image(lst[activeIndex],0,0,600,600)
+    text(txt[activeIndex],300,25)
+def mouseClicked():
+    global activeIndex
+    if mouseButton == LEFT and activeIndex !=len(lst)-1:
+        activeIndex = activeIndex + 1
+    elif mouseButton == RIGHT and activeIndex !=0:
+        activeIndex = activeIndex - 1
