@@ -1,0 +1,31 @@
+activeIndex = 0
+x = 0
+y=300
+def setup():
+    global img1,img2,img3,img4,img5
+    size(600,600)
+    textSize(50)
+    img1 = loadImage('grass.png')
+    img2 = loadImage('car.png')
+    img3 = loadImage('road.png')
+    img4 = loadImage('target.png')
+    img5 = loadImage('human.png')
+def draw():
+    global x
+    x+=2
+    image(img1,0,0,600,600)
+    image(img4,550,300,50,50)
+    image(img2,x,y,200,200)
+    if x == 200 and y == 200:
+        text('YOU LOSE!',300, 20)
+        x = 0
+    elif  x == 550 and y == 300:
+        text('YOU WIN!',300, 20)
+        x=550
+def keyPressed():
+    global y
+    if keyCode == UP and y !=0:
+        y=y+5
+    elif keyCode == DOWN and y !=600:
+          y=y-5
+    image(img2,x+1,y,200,200)
