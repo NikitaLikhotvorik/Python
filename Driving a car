@@ -9,12 +9,13 @@ def setup():
     img2 = loadImage('car.png')
     img3 = loadImage('road.png')
     img4 = loadImage('target.png')
-    img5 = loadImage('human.png')
+    img5 = loadImage('human.jpg')
 def draw():
     global x
     x+=2
     image(img1,0,0,600,600)
     image(img4,550,300,50,50)
+    image(img5,200,200,50,50)
     image(img2,x,y,200,200)
     if x == 200 and y == 200:
         text('YOU LOSE!',300, 20)
@@ -24,8 +25,8 @@ def draw():
         x=550
 def keyPressed():
     global y
-    if keyCode == UP and y !=0:
+    if keyCode == DOWN and y !=0:
         y=y+5
-    elif keyCode == DOWN and y !=600:
+    elif keyCode == UP and y !=600:
           y=y-5
     image(img2,x+1,y,200,200)
