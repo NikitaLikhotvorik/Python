@@ -32,7 +32,8 @@ def draw():
     background(255,0,0)
     for x in range(len(y)):
         y[x] += dy[x]
-        if y[x] > 400:
+        if y[x] > height:
             dy[x] = random(2,6)
             y[x] = 0
         snow(20+80*x, y[x],0.5)
+
