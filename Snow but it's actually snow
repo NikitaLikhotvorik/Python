@@ -1,0 +1,38 @@
+y = [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+dy = [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+i=[]
+w=0
+def setup():
+    size(800,800)
+def vetka():
+    line(0,0,150,0)
+    line(140,0,150,-10)
+    line(140,0,150,10)
+    line(40,0,0,40)
+    line(70,0,0,50)
+    line(100,0,110,-10)
+    line(90,0,100,10)
+    line(90,0,0,90)
+    
+def snow(x,y,sz):
+    global w
+    w=w+0.2
+    push()
+    translate(x,y)
+    rotate(radians(w))
+    scale(0.5)
+    for i in range (4):
+        vetka()
+        rotate(radians(90))
+    for index in range(len(dy)):
+        dy[index] = random(2,6)
+    pop()
+def draw():    
+    global y
+    background(255,0,0)
+    for x in range(len(y)):
+        y[x] += dy[x]
+        if y[x] > 400:
+            dy[x] = random(2,6)
+            y[x] = 0
+        snow(20+80*x, y[x],0.5)
