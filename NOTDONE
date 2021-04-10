@@ -1,0 +1,49 @@
+class Pulemet:
+     def __init__(self,x,y):
+        self.x=x
+        self.y=y
+     def draw_(self):
+        rect(self.x,self.y,200,0)
+        rect(self.x,self.y,50,100)
+dulo=Pulemet(275,600)
+telo=Pulemet(300,700)
+class Pulia:
+    def __init__(self,x,y):
+        self.x= x
+        self.y=y
+    def draw_(self):
+        circle(self.x,self.y,50)
+    def move(self):
+          sobsvennoPulia.y-=1
+sobsvennoPulia=Pulia(dulo.x,600)
+def setup():
+    size(800,700)
+    background(1)
+
+
+def draw():
+    global sobsvennoPulia,dulo
+    background(0)
+    if sobsvennoPulia.y==dulo.y:
+        sobsvennoPulia.y=0
+    else:  sobsvennoPulia.x !=dulo.x+25
+    sobsvennoPulia.x = dulo.x+25
+    telo.draw_()
+    dulo.draw_()
+    if sobsvennoPulia.y==0:
+        sobsvennoPulia.y=600
+    sobsvennoPulia.draw_()
+    sobsvennoPulia.y-=5
+
+
+def keyPressed():
+    global dulo , telo
+    if keyCode == RIGHT and telo.x !=800:
+         dulo.x=dulo.x+5
+         telo.x=telo.x+5
+    elif keyCode == LEFT and telo.x !=0:
+         dulo.x=dulo.x-5
+         telo.x=telo.x-5
+    elif key == ' ':
+         sobsvennoPulia.y-=1
+
