@@ -1,0 +1,28 @@
+class Circle:
+     def __init__(self,x,y):
+        self.x=x
+        self.y=y
+     def draw_(self):
+        circle(self.x,self.y,50)
+        
+        
+circl=Circle(400,400)
+def setup():
+    size(800,800)
+    background(1)
+
+
+def draw():
+    circl.draw_()
+
+def keyPressed():
+    if keyCode == DOWN and circl.y !=0:
+          circl.y=circl.y+5
+    elif keyCode == UP and circl.y !=800:
+          circl.y=circl.y-5
+    elif keyCode == RIGHT and circl.x !=800:
+          circl.x=circl.x+5
+    elif keyCode == LEFT and circl.x !=0:
+          circl.x=circl.x-5
+
+    
