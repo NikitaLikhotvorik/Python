@@ -26,11 +26,13 @@ def draw():
     background(0)
     dulo.draw_()
     if len(bullet_list) > 0: 
+        bullet_list_new = []
         for element in bullet_list:
-            element.move()
             if element.y > 0:
+                element.move()
                 element.draw_()
-#        bullet_list = filter(item for item in bullet_list if item.y > 0)
+                bullet_list_new.append(element)
+        bullet_list = bullet_list_new
 
 def keyPressed():
     global dulo, bullet_list
