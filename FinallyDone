@@ -1,0 +1,43 @@
+class Pulemet:
+     def __init__(self,x,y):
+        self.x=x
+        self.y=y
+     def draw_(self):
+        rect(self.x,self.y,50,100)
+        rect(self.x-25,self.y+50,100,50)
+dulo=Pulemet(275,600)
+bullet_list = []
+class Pulia:
+    def __init__(self,x,y):
+        self.x= x
+        self.y=y
+    def draw_(self):
+        circle(self.x,self.y,50)
+    def move(self):
+        self.y-=1
+
+def setup():
+    size(800,700)
+    background(1)
+
+
+def draw():
+    global dulo,bullet_list
+    background(0)
+    dulo.draw_()
+    if len(bullet_list) > 0: 
+        for element in bullet_list:
+            element.move()
+            if element.y > 0:
+                element.draw_()
+#        bullet_list = filter(item for item in bullet_list if item.y > 0)
+
+def keyPressed():
+    global dulo, bullet_list
+    if keyCode == RIGHT and dulo.x !=750:
+         dulo.x=dulo.x+5
+    elif keyCode == LEFT and dulo.x !=0:
+         dulo.x=dulo.x-5
+    elif key == ' ':
+         sobsvennoPulia=Pulia(dulo.x + 25,600)
+         bullet_list.append(sobsvennoPulia)
