@@ -1,0 +1,125 @@
+img1 = loadImage('backgrownd.jpg')
+def.MenuMoe():
+   image(img1,0,0,800,700)
+   text(txt,200,100)
+   text(txt2,270,550)
+   text(txt3,270,300)
+   
+   
+   
+   
+   
+   y = [0,0,0,0]
+dy = [0,0,0,0]
+class Pulemet:
+     def __init__(self,x,y):
+        self.x=x
+        self.y=y
+     def draw_(self):
+        rect(self.x,self.y,50,100)
+        rect(self.x-25,self.y+50,100,50)
+dulo=Pulemet(275,600)
+bullet_list = []
+class Pulia:
+    def __init__(self,x,y):
+        self.x= x
+        self.y=y
+    def draw_(self):
+        circle(self.x,self.y,50)
+    def move(self):
+        self.y-=3
+
+def setup():
+    size(800,700)
+    background(1)
+    global y
+    for index in range(len(dy)):
+        dy[index] = random(2,6)
+
+def draw():
+    global dulo,bullet_list,y
+    background(0)
+    for x in range(len(y)):
+        y[x] += dy[x]
+        if y[x] > 700:
+            dy[x] = 1
+            y[x] = 0
+        circle(10+30*8*x, y[x], 30)
+    dulo.draw_()
+    if len(bullet_list) > 0: 
+        bullet_list_new = []
+        for element in bullet_list:
+            if element.y > 0:
+                element.move()
+                element.draw_()
+                bullet_list_new.append(element)
+        bullet_list = bullet_list_new
+
+def keyPressed():
+    global dulo, bullet_list
+    if keyCode == RIGHT and dulo.x !=750:
+         dulo.x=dulo.x+5
+    elif keyCode == LEFT and dulo.x !=0:
+         dulo.x=dulo.x-5
+    elif key == ' ':
+         sobsvennoPulia=Pulia(dulo.x + 25,600)
+         bullet_list.append(sobsvennoPulia)
+
+
+
+
+y = [0,0,0,0]
+dy = [0,0,0,0]
+class Pulemet:
+     def __init__(self,x,y):
+        self.x=x
+        self.y=y
+     def draw_(self):
+        rect(self.x,self.y,50,100)
+        rect(self.x-25,self.y+50,100,50)
+dulo=Pulemet(275,600)
+bullet_list = []
+class Pulia:
+    def __init__(self,x,y):
+        self.x= x
+        self.y=y
+    def draw_(self):
+        circle(self.x,self.y,50)
+    def move(self):
+        self.y-=3
+
+def setup():
+    size(800,700)
+    background(1)
+    global y
+    for index in range(len(dy)):
+        dy[index] = random(2,6)
+
+def draw():
+    global dulo,bullet_list,y
+    background(0)
+    for x in range(len(y)):
+        y[x] += dy[x]
+        if y[x] > 700:
+            dy[x] = 1
+            y[x] = 0
+        circle(10+30*8*x, y[x], 30)
+    dulo.draw_()
+    if len(bullet_list) > 0: 
+        bullet_list_new = []
+        for element in bullet_list:
+            if element.y > 0:
+                element.move()
+                element.draw_()
+                bullet_list_new.append(element)
+        bullet_list = bullet_list_new
+
+def keyPressed():
+    global dulo, bullet_list
+    if keyCode == RIGHT and dulo.x !=750:
+         dulo.x=dulo.x+5
+    elif keyCode == LEFT and dulo.x !=0:
+         dulo.x=dulo.x-5
+    elif key == ' ':
+         sobsvennoPulia=Pulia(dulo.x + 25,600)
+         bullet_list.append(sobsvennoPulia)
