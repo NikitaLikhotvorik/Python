@@ -1,0 +1,81 @@
+img1 = 0
+StartIndex = 0
+Dver = 0
+player = 0
+def MenuMoe():
+    global StartIndex
+    rect(325,325,100,50)
+    image(img1,0,0,800,700)
+    text('start',350,350)
+    text('Labyrint',350,200)
+    text('exit',350,700)
+    rect(325,325,100,50)
+    if mousePressed and mouseX>325 and  mouseX<425 and mouseY>375 and mouseY>425:
+        StartIndex=1
+    if mousePressed and mouseX>325 and  mouseX<425 and mouseY>675 and mouseY<725:
+        exit()
+class Igrok:
+    def __init__(self,x,y):
+        self.x=x
+        self.y=y
+    def draw_(self):
+        square(self.x,self.y,75)
+def GameItself():
+    player.draw_()
+class Prepyatstvie:
+    def __init__(self,x,y,dx,dy):
+        self.x=x
+        self.y=y
+        self.dx=dx
+        self.dy=dy
+    def draw_(self):
+        rect(self.x,self.y,self.dx,self.dy)
+def Dead():
+    global StartIndex
+    background(255)
+    text('YOU DIED!', 400,400)
+    text('try again?', 400,600)
+    if mousePressed and mouseX>375 and  mouseX<425 and mouseY>575 and mouseY<625:
+        StartIndex = 1
+def setup():
+    global img1 , player, Opasnost1
+    player = Igrok(400,675)
+    Opasnost1 = Prepyatstvie(100,50,750,50)
+    img1 = loadImage('backgrownd.jpg');
+    size(800,700)
+
+def draw():
+    global StartIndex , player, Opasnost1
+    background(0)
+    if StartIndex==0: 
+        MenuMoe()
+    if StartIndex==10:
+        Dead()
+    if StartIndex==1:
+        GameItself() 
+    if player.y==0:
+        StartIndex = 2
+    if StartIndex==1: 
+        GameItself()
+    if StartIndex == 1:
+        Opasnost1.draw_()
+    Opasnost1.y=Opasnost1.y+2
+    if player.y == Opasnost1.y and player.x>=Opasnost1.x and player.x<=800:
+        StartIndex = 10
+def mousePressed():
+    global  StartIndex
+    if mouseX>375 and  mouseX<475 and mouseY>325 and mouseY<375 and StartIndex==0:
+        StartIndex=1
+    elif mousePressed and mouseX>325 and  mouseX<425 and mouseY>675 and mouseY>725 and StartIndex==0:
+        exit()
+def keyPressed():
+    if keyCode== 'LEFT' and player.x != 25:
+        player.x = player.x -3
+    if keyCode== 'RIGHT' and player.x != 775:
+       player.x = player.x + 3
+    if keyCode== 'DOWN' and player.y != 625:
+        player.y = player.y + 3
+    if keyCode== 'UP' and player.x != 25:
+        player.y = player.y-3
+    
+    
