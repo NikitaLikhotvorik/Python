@@ -10,8 +10,8 @@ def MenuMoe():
 #    push
     fill(500,0,0)
 #    pop
-    img1 = loadImage('D:\sketch_210508b\background.jpg');
-#    image(img1,0,0,800,700)
+    img1 = loadImage('background.jpg');
+    image(img1,0,0,800,700)
     text('start',350,350)
     text('Labyrint',350,200)
     text('exit',350,675)
@@ -28,6 +28,7 @@ class Igrok:
     def draw_(self):
         square(self.x,self.y,75)
 def GameItself():
+    background(0)
     player.draw_()
 class Prepyatstvie:
     def __init__(self,x,y,dx,dy):
@@ -37,13 +38,18 @@ class Prepyatstvie:
         self.dy=dy
     def draw_(self):
         rect(self.x,self.y,self.dx,self.dy)
+    def check_(self):
+        if x >= self.x and x <= self.x+self.dx and y >= self.y and y <= self.y + self.dy:
+            return 1
+        else:
+            return 0
 def Dead():
     global StartIndex
     background(255)
     fill(200,0,0)
     text('YOU DIED!', 400,400)
     text('try again?', 400,600)
-    if mousePressed and mouseX>300 and  mouseX<400 and mouseY>500 and mouseY<600:
+    if mousePressed and mouseX>400 and  mouseX<450 and mouseY>575 and mouseY<625:
         StartIndex = 1
 def setup():
     global  player, Opasnost1
@@ -68,7 +74,7 @@ def draw():
     Opasnost1.y=Opasnost1.y + PlusObs
     println(player.x)
     println(Opasnost1.x)
-    if player.y <= Opasnost1.y and player.x >= Opasnost1.x and player.x <= 800:
+    if player.y == Opasnost1.y and player.x >= Opasnost1.x and player.x <= 800:
         StartIndex = 10
         PlusObs=0
         println(StartIndex)
