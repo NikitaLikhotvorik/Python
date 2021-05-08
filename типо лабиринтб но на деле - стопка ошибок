@@ -2,22 +2,27 @@ img1 = 0
 StartIndex = 0
 Dver = 0
 player = 0
-PlusObs = 1
+def inIt():
+    player.x=400
+    player.y=625
+    Opasnost1.x=100
+    Opasnost1.y=0
+    Opasnost1.dx=750
+    Opasnost1.dy=50
+    PlusObs=1
 def MenuMoe():
     global img1, StartIndex
-    rect(325,325,100,50)
-    rect(325,650,100,50)
-#    push
-    fill(500,0,0)
-#    pop
     img1 = loadImage('background.jpg');
     image(img1,0,0,800,700)
+    fill(255)
+    rect(300,300,150,50)
+    rect(300,650,150,50)
+    fill(500,0,0)
     text('start',350,350)
     text('Labyrint',350,200)
     text('exit',350,675)
     fill(255)
-#    rect(325,325,100,50)
-    if mousePressed and mouseX>250 and  mouseX<350 and mouseY>375 and mouseY>425:
+    if mousePressed and mouseX>375 and  mouseX<475 and mouseY>325 and mouseY<375 and StartIndex==0:
         StartIndex=1
     if mousePressed and mouseX>325 and  mouseX<425 and mouseY>675 and mouseY<725:
         exit()
@@ -38,60 +43,78 @@ class Prepyatstvie:
         self.dy=dy
     def draw_(self):
         rect(self.x,self.y,self.dx,self.dy)
-    def check_(self):
+    def check_(self,x,y):
         if x >= self.x and x <= self.x+self.dx and y >= self.y and y <= self.y + self.dy:
-            return 1
-        else:
             return 0
+        else:
+            return 1
 def Dead():
     global StartIndex
     background(255)
     fill(200,0,0)
     text('YOU DIED!', 400,400)
     text('try again?', 400,600)
+    fill(255)
     if mousePressed and mouseX>400 and  mouseX<450 and mouseY>575 and mouseY<625:
+        inIt()
         StartIndex = 1
 def setup():
-    global  player, Opasnost1
+    global  player, Opasnost1, Opasnost2 , Opasnost3
     player = Igrok(400,625)
     Opasnost1 = Prepyatstvie(100,0,750,50)
+    Opasnost2 = Prepyatstvie(0,0,350,50)
+    Opasnost3 = Prepyatstvie(450,0,250,50)
     img1 = loadImage('background.jpg');
     size(800,700)
 
 def draw():
-    global StartIndex, player, Opasnost1 , PlusObs
+    global StartIndex, player, Opasnost1 , Opasnost2 , Opasnost3
     background(0)
-    
     if StartIndex==0: 
         MenuMoe()
     if StartIndex==10:
         Dead() 
-    if player.y==0:
+    if player.y<=0:
         StartIndex = 2
     if StartIndex==1: 
         GameItself()
         Opasnost1.draw_()
-    Opasnost1.y=Opasnost1.y + PlusObs
+    if StartIndex==2:
+        player.x=400
+        player.y=625
+        GameItself()
+        Opasnost2.draw_()
+        Opasnost3.draw_()
+    Opasnost1.y = Opasnost1.y + 1
+    Opasnost2.y = Opasnost2.y + 2
+    Opasnost3.y = Opasnost3.y + 2
     println(player.x)
     println(Opasnost1.x)
-    if player.y == Opasnost1.y and player.x >= Opasnost1.x and player.x <= 800:
+    #if player.y == Opasnost1.y and player.x >= Opasnost1.x and player.x <=Opasnost1.x+Opasnost1.dx:
+    #    StartIndex = 10
+    #    PlusObs=0
+    #    println(StartIndex)
+    check = Opasnost1.check_(player.x , player.y)*\
+            Opasnost1.check_(player.x + 75 , player.y)*\
+            Opasnost1.check_(player.x , player.y + 75)*\
+            Opasnost1.check_(player.x +75, player.y + 75)
+    if check == 0:
         StartIndex = 10
-        PlusObs=0
         println(StartIndex)
-def mousePressed():
-    global  StartIndex
-    if mouseX>375 and  mouseX<475 and mouseY>325 and mouseY<375 and StartIndex==0:
-        StartIndex=1
-    elif mousePressed and mouseX>325 and  mouseX<425 and mouseY>675 and mouseY>725 and StartIndex==0:
-        exit()
+#def mousePressed():
+ #   global  StartIndex
+   # if mouseX>375 and  mouseX<475 and mouseY>325 and mouseY<375 and StartIndex==0:
+  #      StartIndex=1
+  #  elif mousePressed and mouseX>325 and  mouseX<425 and mouseY>675 and mouseY>725 and StartIndex==0:
+  #      exit()
 def keyPressed():
 #    println(player.x)
-    if keyCode== LEFT and player.x != 25:
+    if keyCode== LEFT and player.x >= 0:
         player.x = player.x -3
-    if keyCode== RIGHT and player.x != 775:
+    if keyCode== RIGHT and player.x <= 725:
        player.x = player.x + 3
-    if keyCode== DOWN and player.y != 625:
+    if keyCode== DOWN and player.y >= 625:
         player.y = player.y + 3
-    if keyCode== UP and player.x != 25:
+    if keyCode== UP:
         player.y = player.y-3
 #    println(player.x)
