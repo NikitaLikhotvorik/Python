@@ -49,20 +49,21 @@ class ListPrepyatstvia:
         if StartIndex == 1:
             Opasnost = Prepyatstvie(100,0,750,50)
             self.lst.append(Opasnost)
+            self.append_(0,-300,710,50)
         if StartIndex == 2:
-            self.append_(0,0,350,50)
-            self.append_(450,0,250,50)
-            self.append_(300,-325,300,50)
+            self.append_(90,0,620,50)
+            self.append_(0,-325,300,50)
+            self.append_(90,-325,50,275)
         if StartIndex == 3:
             self.append_(0,-25,75,75)
-            l
-            self.append_(60,0,75,75)
-            self.append_(150,-50,75,75)
-            self.append_(227,-75,75,75)
-            self.append_(360,-100,75,75)
-            self.append_(725,-10,75,75)
-            self.append_(645,0,75,75)
-            self.append_(575,-50,75,75)
+            
+            self.append_(60,0,75,75, random(1,2,2.5))
+            self.append_(150,-50,75,75, random(1,2,2.5))
+            self.append_(227,-75,75,75, random(1,2,2.5))
+            self.append_(360,-100,75,75, random(1,2,2.5))
+            self.append_(725,-10,75,75, random(1,2,2.5))
+            self.append_(645,0,75,75, random(1,2,2.5))
+            self.append_(575,-50,75,75, random(1,2,2.5))
             #self.append_(0,0,50,350)
             #self.append_(0, 425,50,275)
             #for item in range(4,12):
@@ -72,12 +73,13 @@ class ListPrepyatstvia:
             #for item in range(6,8):
                 #lst[item].x-=diff
             #self.append_(350,0,100,50)
-    def append_(self,x,y,dx,dy):
-        Opasnost = Prepyatstvie(x,y,dx,dy)
+            
+    def append_(self,x,y,dx,dy,speed = 1.35):
+        Opasnost = Prepyatstvie(x,y,dx,dy , speed)
         self.lst.append(Opasnost)
     def fall_(self, diff):
         for item in self.lst:
-            item.y += diff
+            item.y += item.speed
     def draw_(self):
         for item in self.lst:
             item.draw_()
@@ -103,11 +105,12 @@ def GameItself():
     player.draw_()
 
 class Prepyatstvie:
-    def __init__(self,x,y,dx,dy):
+    def __init__(self,x,y,dx,dy, speed = 1.35):
         self.x=x
         self.y=y
         self.dx=dx
         self.dy=dy
+        self.speed = speed
     def draw_(self):
         rect(self.x,self.y,self.dx,self.dy)
     def check_(self,x,y):
@@ -176,12 +179,12 @@ def draw():
     if check == 0:
         StartIndex = 10
         println(StartIndex)
-def keyPressed():
-    if keyCode== LEFT and player.x >= 0:
-        player.x = player.x -3
-    if keyCode== RIGHT and player.x <= 725:
-       player.x = player.x + 3
-    if keyCode== DOWN and player.y >= 625:
-        player.y = player.y + 3
-    if keyCode== UP:
-        player.y = player.y-3
+    if keyPressed:
+        if keyCode== LEFT and player.x >= 0:
+            player.x = player.x -3
+        if keyCode== RIGHT and player.x <= 725:
+            player.x = player.x + 3
+        if keyCode== DOWN and player.y <= 625:
+            player.y = player.y + 3
+        if keyCode== UP:
+            player.y = player.y-3
