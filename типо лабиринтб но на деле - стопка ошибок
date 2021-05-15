@@ -2,6 +2,8 @@ img1 = 0
 StartIndex = 0
 Dver = 0
 player = 0
+lst = []
+
 def inIt():
     player.x=400
     player.y=625
@@ -24,8 +26,39 @@ def MenuMoe():
     fill(255)
     if mousePressed and mouseX>375 and  mouseX<475 and mouseY>325 and mouseY<375 and StartIndex==0:
         StartIndex=1
-    if mousePressed and mouseX>325 and  mouseX<425 and mouseY>675 and mouseY<725:
+    if mousePressed and mouseX>305 and  mouseX<405 and mouseY>655 and mouseY<705:
         exit()
+class ListPrepyatstvia:
+    def __init__(self):
+        self.charge_(1)
+    def charge_(self,StartIndex):
+        self.lst=[]
+        if StartIndex == 1:
+            Opasnost = Prepyatstvie(100,0,750,50)
+            self.lst.append(Opasnost)
+        if StartIndex == 2:
+            self.append_(0,0,350,50)
+            self.append_(450,0,250,50)
+    def append_(self,x,y,dx,dy):
+        Opasnost = Prepyatstvie(x,y,dx,dy)
+        self.lst.append(Opasnost)
+    def fall_(self, diff):
+        for item in self.lst:
+            item.y += diff
+    def draw_(self):
+        for item in self.lst:
+            item.draw_()
+    def check_(self,player):
+        check = 1
+        for item in self.lst:
+            check = item.check_(player.x , player.y)*\
+            item.check_(player.x + 75 , player.y)*\
+            item.check_(player.x , player.y + 75)*\
+            item.check_(player.x +75, player.y + 75)
+            if check == 0:
+                return check
+        return check
+                
 class Igrok:
     def __init__(self,x,y):
         self.x=x
@@ -34,7 +67,9 @@ class Igrok:
         square(self.x,self.y,75)
 def GameItself():
     background(0)
+#    op_list.charge_()
     player.draw_()
+
 class Prepyatstvie:
     def __init__(self,x,y,dx,dy):
         self.x=x
@@ -59,54 +94,60 @@ def Dead():
         inIt()
         StartIndex = 1
 def setup():
-    global  player, Opasnost1, Opasnost2 , Opasnost3
+    global  player, Opasnost1, Opasnost2 , Opasnost3, op_list
     player = Igrok(400,625)
-    Opasnost1 = Prepyatstvie(100,0,750,50)
-    Opasnost2 = Prepyatstvie(0,0,350,50)
-    Opasnost3 = Prepyatstvie(450,0,250,50)
+#    Opasnost1 = Prepyatstvie(100,0,750,50)
+    op_list = ListPrepyatstvia()
     img1 = loadImage('background.jpg');
     size(800,700)
 
 def draw():
-    global StartIndex, player, Opasnost1 , Opasnost2 , Opasnost3
+    global StartIndex, player, Opasnost1 , Opasnost2 , Opasnost3, op_list
     background(0)
+
     if StartIndex==0: 
         MenuMoe()
     if StartIndex==10:
         Dead() 
     if player.y<=0:
         StartIndex = 2
+        player = Igrok(400,625)
+        op_list.charge_(StartIndex)
+#        Opasnost2 = Prepyatstvie(0,0,350,50)
+#        Opasnost3 = Prepyatstvie(450,0,250,50)
     if StartIndex==1: 
         GameItself()
-        Opasnost1.draw_()
+#        Opasnost1.draw_()
+        op_list.draw_()
     if StartIndex==2:
-        player.x=400
-        player.y=625
-        GameItself()
-        Opasnost2.draw_()
-        Opasnost3.draw_()
-    Opasnost1.y = Opasnost1.y + 1
-    Opasnost2.y = Opasnost2.y + 2
-    Opasnost3.y = Opasnost3.y + 2
-    println(player.x)
-    println(Opasnost1.x)
-    #if player.y == Opasnost1.y and player.x >= Opasnost1.x and player.x <=Opasnost1.x+Opasnost1.dx:
-    #    StartIndex = 10
-    #    PlusObs=0
-    #    println(StartIndex)
-    check = Opasnost1.check_(player.x , player.y)*\
-            Opasnost1.check_(player.x + 75 , player.y)*\
-            Opasnost1.check_(player.x , player.y + 75)*\
-            Opasnost1.check_(player.x +75, player.y + 75)
+        GameItself() 
+        op_list.draw_()
+#        Opasnost2.draw_()
+#        Opasnost3.draw_()
+#        println('startindex=2')
+    op_list.fall_(1)
+#    Opasnost1.y = Opasnost1.y + 1
+#    if StartIndex>1 and StartIndex<10:
+#        Opasnost2.y = Opasnost2.y + 2
+#        Opasnost3.y = Opasnost3.y + 2
+#    check = Opasnost1.check_(player.x , player.y)*\
+#            Opasnost1.check_(player.x + 75 , player.y)*\
+#            Opasnost1.check_(player.x , player.y + 75)*\
+#            Opasnost1.check_(player.x +75, player.y + 75)
+    check = op_list.check_(player)
     if check == 0:
         StartIndex = 10
         println(StartIndex)
-#def mousePressed():
- #   global  StartIndex
-   # if mouseX>375 and  mouseX<475 and mouseY>325 and mouseY<375 and StartIndex==0:
-  #      StartIndex=1
-  #  elif mousePressed and mouseX>325 and  mouseX<425 and mouseY>675 and mouseY>725 and StartIndex==0:
-  #      exit()
+def keyPressed():
+    if keyCode== LEFT and player.x >= 0:
+        player.x = player.x -3
+    if keyCode== RIGHT and player.x <= 725:
+       player.x = player.x + 3
+    if keyCode== DOWN and player.y >= 625:
+        player.y = player.y + 3
+    if keyCode== UP:
+        player.y = player.y-3
+
 def keyPressed():
 #    println(player.x)
     if keyCode== LEFT and player.x >= 0:
