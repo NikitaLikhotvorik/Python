@@ -1,8 +1,11 @@
 img1 = 0
 img2=0
+img3=0
+img4=0
 StartIndex = 0
 Dver = 0
 player = 0
+biff=0
 lst = []
 NewLvL=1
 def Ending():
@@ -14,8 +17,8 @@ def Ending():
     rect(300,300,150,50)
     rect(300,650,150,50)
     fill(500,0,0)
-    text('Try Again?',350,350)
-    text('Good Job! You have completed the game!',350,200)
+    text('Try Again?',340,340)
+    text('Good Job! You have completed the game!',5,300)
     text('Exit',350,675)
     fill(255)
     if mousePressed and mouseX>300 and  mouseX<450 and mouseY>300 and mouseY<350 and StartIndex==5:
@@ -51,7 +54,7 @@ class ListPrepyatstvia:
         if StartIndex == 1:
             Opasnost = Prepyatstvie(100,0,750,50)
             self.lst.append(Opasnost)
-            self.append_(0,-325,685,50)
+            self.append_(0,-350,685,50)
         if StartIndex == 2:
             self.append_(90,0,620,50)
             self.append_(0,-325,300,50)
@@ -62,13 +65,13 @@ class ListPrepyatstvia:
         if StartIndex == 3:
             self.append_(0,-25,75,75)
             
-            self.append_(60,0,75,75, random(1.25,2.5))
-            self.append_(150,-50,75,75, random(1.25,2.2))
-            self.append_(227,-75,75,75, random(1.25,2.5))
-            self.append_(360,-100,75,75, random(1.25,2.5))
-            self.append_(725,-10,75,75, random(1.25,2.5))
-            self.append_(645,0,75,75, random(1.25,2.5))
-            self.append_(575,-50,75,75, random(1.25,2.5))
+            self.append_(60,0,75,75, random(1.4,2.5))
+            self.append_(150,-50,75,75, random(1.4,2.2))
+            self.append_(227,-75,75,75, random(1.4,2.5))
+            self.append_(360,-100,75,75, random(1.4,2.5))
+            self.append_(725,-10,75,75, random(1.4,2.5))
+            self.append_(645,0,75,75, random(1.4,2.5))
+            self.append_(575,-50,75,75, random(1.4,2.5))
             self.append_(200,-400,570,50,1.6)
             self.append_(0,-700,600,50,1.6)
             self.append_(0,-400,50,300,1.6)
@@ -100,6 +103,7 @@ class ListPrepyatstvia:
     def fall_(self, diff):
         for item in self.lst:
             item.y += item.speed
+        
     def draw_(self):
         for item in self.lst:
             item.draw_()
@@ -113,7 +117,12 @@ class ListPrepyatstvia:
             if check == 0:
                 return check
         return check
-                
+def NextOne(biff):
+    global player
+    if player.y<=0:
+            StartIndex = biff
+            player = Igrok(400,625)
+            op_list.charge_(StartIndex)
 class Igrok:
     def __init__(self,x,y):
         self.x=x
@@ -121,7 +130,8 @@ class Igrok:
     def draw_(self):
         square(self.x,self.y,75)
 def GameItself():
-    background(0)
+    image(img4,0,0)
+#    background(0)
     player.draw_()
 
 class Prepyatstvie:
@@ -139,8 +149,9 @@ class Prepyatstvie:
         else:
             return 1
 def Dead():
-    global StartIndex
-    background(255)
+    global StartIndex, img3
+    img3 = loadImage('YouDed.jpg');
+    image(img3,0,0,800,700)
     rect(375,575,150,50)
     textSize(20)
     fill(200,0,0)
@@ -153,10 +164,11 @@ def Dead():
         player.x=400
         player.y=625
 def setup():
-    global  player, op_list
+    global  player, op_list, img4
     player = Igrok(400,625)
     op_list = ListPrepyatstvia()
     img1 = loadImage('background.jpg');
+    img4= loadImage('dungeon.png');
     size(800,700)
 
 def draw():
@@ -171,28 +183,17 @@ def draw():
         GameItself()
         op_list.draw_()
         op_list.fall_(1)
-        if player.y<=0:
-            StartIndex = 2
-            player = Igrok(400,625)
-            op_list.charge_(StartIndex)
+        NextOne(2)
     if StartIndex==2:
         GameItself() 
         op_list.draw_()
         op_list.fall_(1.5)
-        if player.y<=0:
-            StartIndex = 3
-            player = Igrok(400,625)
-            op_list.charge_(StartIndex)
+        NextOne(3)
     if StartIndex==3:
         GameItself()
         op_list.draw_()
         op_list.fall_(2)
-        if player.y<=0:
-            StartIndex = 4
-            player = Igrok(400,625)
-            op_list.charge_(StartIndex)
-        #for item in range(4,6):
-             #   lst[item].x+=diff
+        NextOne(4)
     if StartIndex==4:
         GameItself()
         op_list.draw_()
