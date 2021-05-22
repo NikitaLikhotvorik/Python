@@ -2,6 +2,8 @@ img1 = 0
 img2=0
 img3=0
 img4=0
+img5=0
+img6=0
 StartIndex = 0
 Dver = 0
 player = 0
@@ -12,13 +14,13 @@ def Ending():
     global img2,StartIndex
     img2= loadImage('Finale.jpg')
     image(img2,0,0,800,700)
-    textSize(20)
+    textSize(18)
     fill(255)
     rect(300,300,150,50)
     rect(300,650,150,50)
     fill(500,0,0)
     text('Try Again?',340,340)
-    text('Good Job! You have completed the game!',5,300)
+    text('Good Job! You have completed the game!',5,285)
     text('Exit',350,675)
     fill(255)
     if mousePressed and mouseX>300 and  mouseX<450 and mouseY>300 and mouseY<350 and StartIndex==5:
@@ -118,7 +120,7 @@ class ListPrepyatstvia:
                 return check
         return check
 def NextOne(biff):
-    global player
+    global player, StartIndex
     if player.y<=0:
             StartIndex = biff
             player = Igrok(400,625)
@@ -128,7 +130,7 @@ class Igrok:
         self.x=x
         self.y=y
     def draw_(self):
-        square(self.x,self.y,75)
+        image(img6,self.x,self.y,75,75)
 def GameItself():
     image(img4,0,0)
 #    background(0)
@@ -142,7 +144,7 @@ class Prepyatstvie:
         self.dy=dy
         self.speed = speed
     def draw_(self):
-        rect(self.x,self.y,self.dx,self.dy)
+        image(img5,self.x,self.y,self.dx,self.dy)
     def check_(self,x,y):
         if x >= self.x and x <= self.x+self.dx and y >= self.y and y <= self.y + self.dy:
             return 0
@@ -164,11 +166,13 @@ def Dead():
         player.x=400
         player.y=625
 def setup():
-    global  player, op_list, img4
+    global  player, op_list, img4,img5,img6
     player = Igrok(400,625)
     op_list = ListPrepyatstvia()
     img1 = loadImage('background.jpg');
     img4= loadImage('dungeon.png');
+    img5= loadImage('brick.jpg');
+    img6= loadImage('IgrokMoy.png');
     size(800,700)
 
 def draw():
