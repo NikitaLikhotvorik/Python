@@ -17,7 +17,7 @@ def Ending():
     text('Good Job! You have completed the game!',350,200)
     text('Exit',350,675)
     fill(255)
-    if mousePressed and mouseX>300 and  mouseX<450 and mouseY>300 and mouseY<350 and StartIndex==4:
+    if mousePressed and mouseX>300 and  mouseX<450 and mouseY>300 and mouseY<350 and StartIndex==5:
         StartIndex=1
         op_list.charge_(StartIndex)
         player.x=400
@@ -49,21 +49,39 @@ class ListPrepyatstvia:
         if StartIndex == 1:
             Opasnost = Prepyatstvie(100,0,750,50)
             self.lst.append(Opasnost)
-            self.append_(0,-300,710,50)
+            self.append_(0,-310,685,50)
         if StartIndex == 2:
             self.append_(90,0,620,50)
             self.append_(0,-325,300,50)
             self.append_(90,-325,50,275)
+            self.append_(620,-425,50,240)
+            self.append_(620,-425,200,50)
+            self.append_(315,-500,305,50)
         if StartIndex == 3:
             self.append_(0,-25,75,75)
             
-            self.append_(60,0,75,75, random(1,2,2.5))
-            self.append_(150,-50,75,75, random(1,2,2.5))
-            self.append_(227,-75,75,75, random(1,2,2.5))
-            self.append_(360,-100,75,75, random(1,2,2.5))
-            self.append_(725,-10,75,75, random(1,2,2.5))
-            self.append_(645,0,75,75, random(1,2,2.5))
-            self.append_(575,-50,75,75, random(1,2,2.5))
+            self.append_(60,0,75,75, random(1,2.5))
+            self.append_(150,-50,75,75, random(1,2.2))
+            self.append_(227,-75,75,75, random(1,2.5))
+            self.append_(360,-100,75,75, random(1,2.5))
+            self.append_(725,-10,75,75, random(1,2.5))
+            self.append_(645,0,75,75, random(1,2.5))
+            self.append_(575,-50,75,75, random(1,2.5))
+            self.append_(200,-400,570,50,1.6)
+            self.append_(0,-700,600,50,1.6)
+            self.append_(0,-400,50,300,1.6)
+        if StartIndex == 4:
+            self.append_(0,0,160,50)
+            self.append_(160,-150,160,50,1.2)
+            self.append_(320,-400,160,50,1.2)
+            self.append_(480,-150,160,50,1.2)
+            self.append_(640,0,160,50)
+            self.append_(0,-300,160,50)
+            self.append_(160,-700,160,50,1.2)
+            self.append_(320,-800,160,50,1.2)
+            self.append_(480,-550,160,50,1.2)
+            self.append_(640,-300,160,50)
+            self.append_(0,-600,160,50)
             #self.append_(0,0,50,350)
             #self.append_(0, 425,50,275)
             #for item in range(4,12):
@@ -166,13 +184,21 @@ def draw():
         GameItself()
         op_list.draw_()
         op_list.fall_(2)
-        #for item in range(4,6):
-             #   lst[item].x+=diff
         if player.y<=0:
             StartIndex = 4
             player = Igrok(400,625)
             op_list.charge_(StartIndex)
+        #for item in range(4,6):
+             #   lst[item].x+=diff
     if StartIndex==4:
+        GameItself()
+        op_list.draw_()
+        op_list.fall_(2)
+        if player.y<=0:
+            StartIndex = 5
+            player = Igrok(400,625)
+            op_list.charge_(StartIndex)
+    if StartIndex==5:
         Ending()
 
     check = op_list.check_(player)
@@ -188,3 +214,4 @@ def draw():
             player.y = player.y + 3
         if keyCode== UP:
             player.y = player.y-3
+            
