@@ -144,7 +144,8 @@ class Prepyatstvie:
         self.dy=dy
         self.speed = speed
     def draw_(self):
-        image(img5,self.x,self.y,self.dx,self.dy)
+        rect(self.x,self.y,self.dx,self.dy)
+        fill(100,100,100)
     def check_(self,x,y):
         if x >= self.x and x <= self.x+self.dx and y >= self.y and y <= self.y + self.dy:
             return 0
