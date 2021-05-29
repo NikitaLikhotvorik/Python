@@ -34,6 +34,8 @@ def Ending():
 def MenuMoe():
     global img1, StartIndex
     img1 = loadImage('background.jpg');
+    k = loadFont("JasmineUPCBoldItalic-45.vlw")
+    textFont(k)
     image(img1,0,0,800,700)
     textSize(20)
     fill(255)
@@ -78,17 +80,17 @@ class ListPrepyatstvia:
             self.append_(0,-700,600,50,1.6)
             self.append_(0,-400,50,300,1.6)
         if StartIndex == 4:
-            self.append_(0,0,160,50)
-            self.append_(160,-150,160,50,1.35)
-            self.append_(320,-400,160,50,1.35)
-            self.append_(480,-150,160,50,1.35)
-            self.append_(640,0,160,50,1.35)
-            self.append_(0,-300,160,50,1.35)
-            self.append_(160,-700,160,50,1.35)
-            self.append_(320,-800,160,50,1.35)
-            self.append_(480,-550,160,50,1.35)
-            self.append_(640,-300,160,50,1.35)
-            self.append_(0,-600,160,50,1.35)
+            self.append_(0,0,160,50,2)
+            self.append_(160,-150,160,50,2)
+            self.append_(320,-400,160,50,2)
+            self.append_(480,-150,160,50,2)
+            self.append_(640,0,160,50,2)
+            self.append_(0,-300,160,50,2)
+            self.append_(160,-700,160,50,2)
+            self.append_(320,-800,160,50,2)
+            self.append_(480,-550,160,50,2)
+            self.append_(640,-300,160,50,2)
+            self.append_(0,-600,160,50,2)
             #self.append_(0,0,50,350)
             #self.append_(0, 425,50,275)
             #for item in range(4,12):
@@ -112,10 +114,16 @@ class ListPrepyatstvia:
     def check_(self,player):
         check = 1
         for item in self.lst:
-            check = item.check_(player.x , player.y)*\
-            item.check_(player.x + 75 , player.y)*\
-            item.check_(player.x , player.y + 75)*\
+            check = item.check_(player.x+15 , player.y)*\
+            item.check_(player.x+ 15 , player.y)*\
+            item.check_(player.x + 55 , player.y)*\
+            item.check_(player.x+ 55 , player.y+10)*\
+            item.check_(player.x+ 75 , player.y+10)*\
+            item.check_(player.x + 15 , player.y + 15)*\
             item.check_(player.x +75, player.y + 75)
+            item.check_(player.x , player.y + 75)
+            item.check_(player.x+75 , player.y + 35)
+            item.check_(player.x , player.y + 35)
             if check == 0:
                 return check
         return check
@@ -203,10 +211,7 @@ def draw():
         GameItself()
         op_list.draw_()
         op_list.fall_(2)
-        if player.y<=0:
-            StartIndex = 5
-            player = Igrok(400,625)
-            op_list.charge_(StartIndex)
+        NextOne(5)
     if StartIndex==5:
         Ending()
 
